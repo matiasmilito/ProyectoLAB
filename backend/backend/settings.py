@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+from os import getenv
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv(".env")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vx&346^2pccixn!228n77-l7+b2+_h&t1^)w49my1&k@jj2n4l'
+SECRET_KEY = getenv("SECRET_JWT_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,10 +78,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': getenv('DB_DATABASE'),
+        'USER': getenv('DB_USR'),
+        'PASSWORD': getenv('DB_PWD'),
+        'HOST': getenv('DB_HOST'),
     }
 }
+
 #AUTH_USER_MODEL="api.User"
 
 # Password validation
