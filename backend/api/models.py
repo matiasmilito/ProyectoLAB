@@ -54,6 +54,7 @@ class User(AbstractUser):
 
 
 class Turnos(models.Model):
+
     usuario_turno = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='usuariosturnos')
     medico_turno = models.ForeignKey(Medicos, null=False, on_delete=models.CASCADE, related_name='medicosturnos')
     # especialidad_turno = models.ForeignKey(Especialidad, null=False, on_delete= models.CASCADE)

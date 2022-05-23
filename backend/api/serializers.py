@@ -1,12 +1,15 @@
-from api.models import Medicos, Especialidad, ObraSocial, Sede, User, Turnos
+
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+
+from api.models import ObraSocial, Medicos, Especialidad, Sede, User, Turnos
 
 
 class ObraSocialSerializer(serializers.ModelSerializer):
     class Meta:
         model = ObraSocial
         fields = "__all__"
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):
