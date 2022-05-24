@@ -29,9 +29,11 @@ class Medicos(models.Model):
 
 class ObraSocial(models.Model):
     nombre_obrasocial = models.CharField(max_length=50, blank=False)
+    plan_obrasocial = models.CharField(max_length=15, blank=False)
+
 
     def nombre_completo(self):
-        return " {} ".format(self.nombre_obrasocial)
+        return " {}, {} ".format(self.nombre_obrasocial, self.plan_obrasocial)
 
     def __str__(self):
         return self.nombre_completo()
@@ -39,10 +41,10 @@ class ObraSocial(models.Model):
 
 class Sede(models.Model):
     nombre_sede = models.CharField(max_length=50, blank=False)
-    Direccion = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=50)
 
     def nombre_completo(self):
-        return " {}, {} ".format(self.nombre_sede, self.Direccion)
+        return " {}, {} ".format(self.nombre_sede, self.direccion)
 
     def __str__(self):
         return self.nombre_completo()
