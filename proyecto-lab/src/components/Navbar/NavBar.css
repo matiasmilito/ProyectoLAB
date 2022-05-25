@@ -54,6 +54,11 @@
     display: none;
 }
 
+.title-link {
+    text-decoration: none;
+    color: #fff;
+}
+
 @media screen and (max-width: 960px){
     .NavbarItems {
         position: relative;

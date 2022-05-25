@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {MenuItems} from "./MenuItems";
 import './NavBar.css';
 import {Button} from "../Button";
+import {Link} from 'react-router-dom';
 
 class NavBar extends Component{
     state = { clicked: false }
@@ -14,7 +15,7 @@ class NavBar extends Component{
     render() {
         return (
             <nav className="NavbarItems">
-                <h1 className="navbar-logo">Sanatorio<i className="fa-solid fa-hospital"></i></h1>
+                <h1 className="navbar-logo"><Link to={'/'} className="title-link">Sanatorio</Link><i className="fa-solid fa-hospital"></i></h1>
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
