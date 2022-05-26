@@ -23,14 +23,14 @@ class NavBar extends Component{
                     {MenuItems.map((item,index)=>{
                         return (
                             <li key={index}>
-                                <a className={item.cName} href={item.url}>
+                                <Link to={item.url} className={item.cName} >
                                     {item.title}
-                                </a>
+                                </Link>
                             </li>
                         )
                     })}
                 </ul>
-                <Button>Ingresar</Button>
+                <Link to="/login"><Button>Ingresar</Button></Link>
             </nav>
         )
     }
