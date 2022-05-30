@@ -59,6 +59,16 @@
     color: #fff;
 }
 
+.icono {
+    transition: 1s ease;
+}
+
+.icono:hover {
+    transform: rotate(360deg);
+}
+
+
+
 @media screen and (max-width: 960px){
     .NavbarItems {
         position: relative;

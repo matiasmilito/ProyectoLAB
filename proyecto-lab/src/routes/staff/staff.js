@@ -49,6 +49,7 @@ const Staff = () => {
 
     return (
         <div>
+            <div className="staff-background"/>
             <div className="staff-page">
                 <h1 className="staff-title">Nuestros profesionales</h1>
                 <h2 className="staff-subtitle">Contamos con el staff de medicos mas capacitados de la region</h2>

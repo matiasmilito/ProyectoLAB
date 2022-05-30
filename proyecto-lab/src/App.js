@@ -7,6 +7,7 @@ import Home from "./routes/home/home";
 import Sanatorio from "./routes/sanatorio/sanatorio";
 import Turnos from "./routes/turnos/turnos";
 import Login from "./routes/login/login";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/turnos" element={<Turnos/>} />
           <Route path="/login" element={<Login/>} />
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
