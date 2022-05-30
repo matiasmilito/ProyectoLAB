@@ -44,6 +44,11 @@
     color: black;
 }
 
+.login {
+    display: flex;
+    align-items: center;
+}
+
 /*.button-container {*/
 /*    padding-bottom: 10px;*/
 /*}*/
