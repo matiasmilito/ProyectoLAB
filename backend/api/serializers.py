@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'nro_afiliado', 'obra_social', 'username', 'password']
+        fields = ['first_name', 'last_name', 'email', 'nro_afiliado', 'obra_social', 'num_matricula', 'username', 'password']
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -25,18 +25,11 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             nro_afiliado=validated_data['nro_afiliado'],
             obra_social=validated_data['obra_social'],
+            num_matricula=validated_data['num_matricula'],
             username=validated_data['username'],
             password=validated_data['password']
         )
         return user
-
-
-class MeSerializer(serializers.ModelSerializer):
-    obrassociales = ObraSocialSerializer(source='obra_social',read_only=True)
-
-    class Meta:
-        model = get_user_model()
-        fields = "__all__"
 
 
 class EspecialidadSerializer(serializers.ModelSerializer):
@@ -53,6 +46,15 @@ class MedicosSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class MeSerializer(serializers.ModelSerializer):
+    obrassociales = ObraSocialSerializer(source='obra_social', read_only=True)
+    medicos = MedicosSerializer(source='medico', read_only=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = "__all__"
+
+
 class SedeSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -63,8 +65,9 @@ class SedeSerializer(serializers.ModelSerializer):
 class TurnosSerializer(serializers.ModelSerializer):
     usuariosturnos = RegisterSerializer(source='usuario_turno',read_only=True)
     medicosturnos = MedicosSerializer(source='medico_turno',read_only=True)
-    #especialidad_turno = EspecialidadSerializer(read_only=True)
     sedeturnos = SedeSerializer(source='sede_turno',read_only=True)
+
     class Meta:
         model = Turnos
         fields = '__all__'
+

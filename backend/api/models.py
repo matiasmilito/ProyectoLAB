@@ -50,8 +50,10 @@ class Sede(models.Model):
 
 
 class User(AbstractUser):
-    nro_afiliado = models.CharField(max_length=20, null=False, blank=False)
+    nro_afiliado = models.CharField(max_length=20, blank=True)
     obra_social = models.ForeignKey(ObraSocial, null=True, on_delete=models.CASCADE, related_name='obrassociales')
+    num_matricula = models.IntegerField(null=True)
+    medico = models.ForeignKey(Medicos, null=True, on_delete=models.CASCADE, related_name='medicos')
 
 
 class Turnos(models.Model):
