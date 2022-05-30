@@ -11,7 +11,6 @@ class ObraSocialSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -45,6 +44,7 @@ class EspecialidadSerializer(serializers.ModelSerializer):
         model = Especialidad
         fields = "__all__"
 
+
 class MedicosSerializer(serializers.ModelSerializer):
     especialidades = EspecialidadSerializer(source='especialidad',read_only=True)
 
@@ -58,6 +58,7 @@ class SedeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sede
         fields = "__all__"
+
 
 class TurnosSerializer(serializers.ModelSerializer):
     usuariosturnos = RegisterSerializer(source='usuario_turno',read_only=True)
