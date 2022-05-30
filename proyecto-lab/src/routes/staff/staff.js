@@ -1,5 +1,5 @@
 import React from "react";
-import './Staff.css';
+import './staff.css';
 
 const Staff = () => {
     const Medicos = [

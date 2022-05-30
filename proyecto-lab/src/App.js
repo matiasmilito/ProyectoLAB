@@ -2,11 +2,11 @@ import React from "react";
 import NavBar from "./components/navbar/NavBar";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
-import Staff from "./routes/staff";
+import Staff from "./routes/staff/staff";
 import Home from "./routes/home/home";
-import Sanatorio from "./routes/sanatorio";
-import Turnos from "./routes/turnos";
-import Login from "./routes/login";
+import Sanatorio from "./routes/sanatorio/sanatorio";
+import Turnos from "./routes/turnos/turnos";
+import Login from "./routes/login/login";
 
 function App() {
   return (
