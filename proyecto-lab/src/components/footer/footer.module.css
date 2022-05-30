@@ -1,0 +1,31 @@
+.contenedor {
+  background-color: #6d76f7;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  padding: 51px 100px;
+  justify-content: space-between;
+}
+
+.mapa {
+  width: 200px;
+  height: 150px;
+  background-color: gray;
+  border: 1px solid gray;
+
+}
+
+.lista {
+  list-style: none;
+  padding-left: 5px;
+
+}
+
+.link li {
+  text-decoration: none;
+  padding: 15px 0px;
+}
+
+.link:hover {
+  color: red;
+}
