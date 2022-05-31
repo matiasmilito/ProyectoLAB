@@ -25,7 +25,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Tomás/ProyectoLAB/backend",
+    "last_opened_file_path": "C:/Users/Tomás/ProyectoLAB/proyecto-lab",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
@@ -40,6 +40,7 @@
       <workItem from="1653507163092" duration="183000" />
       <workItem from="1653507552306" duration="459000" />
       <workItem from="1653685605414" duration="805000" />
+      <workItem from="1654030828751" duration="57000" />
     </task>
     <servers />
   </component>
