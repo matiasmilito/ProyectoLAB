@@ -1,0 +1,42 @@
+.contenedor {
+  background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  padding: 51px 100px;
+  justify-content: space-between;
+}
+
+.mapa {
+  width: 200px;
+  height: 150px;
+  background-color: gray;
+  border: 1px solid gray;
+
+}
+
+.lista {
+  list-style: none;
+  padding-left: 5px;
+  text-decoration: none;
+}
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
+
+.link li {
+  text-decoration: none;
+  padding: 15px 0px;
+}
+
+/*.link:hover {*/
+/*  color: red;*/
+/*}*/
