@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./home.module.css";
-import {Button} from '../../components/button/Button'
-import Footer from '../../components/footer/footer'
+import {Button} from '../../components/button/Button';
 
 const Home = () => {
   return (
@@ -11,10 +10,11 @@ const Home = () => {
         <div className={styles.contenedorTitulo}>
           <h2 className={styles.titulo}>Sanatorio Rosario</h2>
           <h3 className={styles.subTitulo}>Deja tu salud en nuestras manos!</h3>
-          <Button>Ver Mas</Button>
+          <div className="button-container">
+            <Button>Ver Mas</Button>
+          </div>
         </div>
       </div>
-      <Footer></Footer>
     </div>
   )
 }
