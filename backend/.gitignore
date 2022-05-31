@@ -2,4 +2,5 @@
 .venv
 env/
 venv/
+.idea/workspace.xml
 
