@@ -31,7 +31,6 @@ class ObraSocial(models.Model):
     nombre_obrasocial = models.CharField(max_length=50, blank=False)
     plan_obrasocial = models.CharField(max_length=15, blank=False)
 
-
     def nombre_completo(self):
         return " {}, {} ".format(self.nombre_obrasocial, self.plan_obrasocial)
 
