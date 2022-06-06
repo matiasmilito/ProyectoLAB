@@ -2,6 +2,7 @@ import React from "react";
 import "./login.css"
 import { useState } from "react";
 import {httpPost} from "../../utils/httpFunctions";
+import {Link} from "react-router-dom";
 
 const Login = () => {
 
@@ -39,6 +40,7 @@ const Login = () => {
           </div>
           {/*<div className="button-container">*/}
             <button type="submit" className="login-button">Ingresar</button>
+            <Link to={'/register'}><button>Registrarme</button></Link>
           {/*</div>*/}
         </form>
       </div>
