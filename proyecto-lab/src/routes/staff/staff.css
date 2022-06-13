@@ -44,6 +44,11 @@
     margin: 20px;
 }
 
+.staff-container:hover {
+    transform: translate(-5px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+
 /*.staff-items {*/
 /*    display: grid;*/
 /*    grid-template-columns: repeat(auto-fit,minmax(15rem, 1fr));*/
