@@ -7,13 +7,13 @@ import {useNavigate} from "react-router-dom";
 
 const Register = () => {
 
-    const [first_name, setName] = useState([])
-    const [last_name, setLastname] = useState([])
-    const [email, setEmail] = useState([])
-    const [obra_social, setObra] = useState([])
-    const [nro_afiliado, setAfiliado] = useState([])
-    const [username, setUsername] = useState([])
-    const [password, setPassword] = useState([])
+    const [first_name, setName] = useState("")
+    const [last_name, setLastname] = useState("")
+    const [email, setEmail] = useState("")
+    const [obra_social, setObra] = useState("")
+    const [nro_afiliado, setAfiliado] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
     const mostrarAlerta = () => {
@@ -83,7 +83,7 @@ const Register = () => {
               <div>
                   <label htmlFor="">Obra Social</label>
                   <input
-                      type="text"
+                      type="number"
                       placeholder="OsdeEjemplo"
                       required value={obra_social}
                       onChange={(e)=> setObra(e.target.value)}
@@ -92,7 +92,7 @@ const Register = () => {
               <div>
                   <label htmlFor="">Numero de afiliado</label>
                   <input
-                      type="number"
+                      type="text"
                       placeholder="00465654066"
                       required value={nro_afiliado}
                       onChange={(e) => setAfiliado(e.target.value)}
@@ -124,4 +124,4 @@ const Register = () => {
   )
 }
 
-export default Register();
+export default Register

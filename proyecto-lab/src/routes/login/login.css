@@ -1,6 +1,7 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
     justify-content: space-between;
     border: 1px solid black;
     border-radius: 10px;
@@ -49,6 +50,3 @@
     align-items: center;
 }
 
-/*.button-container {*/
-/*    padding-bottom: 10px;*/
-/*}*/

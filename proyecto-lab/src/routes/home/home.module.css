@@ -29,7 +29,8 @@
 .titulo {
   color: #140da1;
   font-size: 50px;
-  text-shadow:  2px 7px 5px rgb(253 253 253 / 57%), 0px -4px 10px rgb(238 236 236 / 78%);
+  text-shadow: 2px 7px 5px rgb(253 253 253 / 57%),
+    0px -4px 10px rgb(238 236 236 / 78%);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -41,11 +42,10 @@
   text-align: center;
 }
 
-.buttonContainer {
+.button-container {
   display: flex;
   justify-content: center;
 }
-
 .verMasLink, .verMasLink:visited {
   color: #ffffff;
   text-decoration: none;
