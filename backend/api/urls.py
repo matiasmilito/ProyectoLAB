@@ -18,9 +18,6 @@ router.register(r'turnos', TurnosViewSet)
 router.register(r'de', DeViewSet)
 
 
-
-
-
 urlpatterns = [
     path('', include(router.urls)),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

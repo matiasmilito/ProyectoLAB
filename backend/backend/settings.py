@@ -88,6 +88,7 @@ DATABASES = {
         'USER': getenv('DB_USR'),
         'PASSWORD': getenv('DB_PWD'),
         'HOST': getenv('DB_HOST'),
+        'PORT': 3306
     }
 }
 
