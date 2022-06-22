@@ -9,6 +9,7 @@ import Turnos from "./routes/turnos/turnos";
 import Login from "./routes/login/login";
 import Footer from "./components/footer/footer";
 import Register from "../src/routes/register/Register";
+import Profile from "../src/routes/profile/profile";
 
 function App() {
   return (
@@ -16,12 +17,13 @@ function App() {
       <div>
         <NavBar/>
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/sanatorio" element={<Sanatorio/>} />
-          <Route path="/staff" element={<Staff/>} />
-          <Route path="/turnos" element={<Turnos/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/Register" element={<Register/>} />
+          <Route exact={true} path="/" element={<Home/>} />
+          <Route exact={true} path="/sanatorio" element={<Sanatorio/>} />
+          <Route exact={true} path="/staff" element={<Staff/>} />
+          <Route exact={true} path="/turnos" element={<Turnos/>} />
+          <Route exact={true} path="/login" element={<Login/>} />
+          <Route exact={true} path="/Register" element={<Register/>} />
+          <Route exact={true} path="/profile" element={<Profile/>} />
         </Routes>
         <Footer/>
       </div>

@@ -83,7 +83,7 @@ const Register = () => {
               <div>
                   <label htmlFor="">Obra Social</label>
                   <input
-                      type="number"
+                      type="text"
                       placeholder="OsdeEjemplo"
                       required value={obra_social}
                       onChange={(e)=> setObra(e.target.value)}

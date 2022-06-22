@@ -31,7 +31,7 @@ const mostrarError = () => {
       e.preventDefault()
       httpPost('api/login/', {username: username, password: password}).then((res) => {
           localStorage.setItem('token', res.data.access)
-          navigate('/home')
+          navigate('/profile')
           mostrarAlerta();
       }).catch(() => {
         mostrarError();
