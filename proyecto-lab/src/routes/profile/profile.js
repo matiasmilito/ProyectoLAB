@@ -15,7 +15,6 @@ const Profile = () => {
         httpGet('api/login/')
             .then((res) => setUserData(res.data))
       }
-
       useEffect(fetchUser, [])*/
     
 

@@ -12,7 +12,10 @@ handleClick = () => {
 }
 
 
+
 render() {
+  const isLoggedIn = localStorage.getItem('token')
+  isLoggedIn ? console.log("logeado") : console.error("no logeado");
   return (
     <nav className="NavbarItems">
       <h1 className="navbar-logo"><Link to={'/'} className="title-link">SGR</Link><i className="fa-solid fa-hospital icono"></i></h1>
@@ -30,6 +33,7 @@ render() {
           )
         })}
       </ul>
+      {/* <div>{isLoggedIn ? <Link to="/profile"><Button>Perfil</Button></Link> : <Link to="/login"><Button>Ingresar</Button></Link>}</div> */}
       <Link to="/login"><Button>Ingresar</Button></Link>
     </nav>
   )
