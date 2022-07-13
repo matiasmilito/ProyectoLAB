@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { httpGet2 } from "../../utils/httpFunctions";
 
 const Turnos = () => {
+
+  const [medicos, setMedicos] = useState([])
+
+  const fetchmedicos = () => {
+    httpGet2('api/medicos/')
+        .then((res) => setMedicos(res.data))
+  }
+
+
+  useEffect(fetchmedicos, [])
+  console.log(medicos[0])
+
+
   return (
       <div>
         <div>
@@ -9,18 +24,14 @@ const Turnos = () => {
         <div>
           <label>Especialidad</label>
           <select id="especialidad" name="especialidad">
-            <option value="Neurologia">Neurologia</option>
-            <option value="Traumatologia">Traumatologia</option>
-            <option value="Kinesiologia">Kinesiologia</option>
-            <option value="Oncología">Oncología</option>
+            {/* <option>{httpGet2('api/medicos/')
+        .then((res) => setMedicos(res.data.name))}</option> */}
           </select>
         </div>
         <div>
           <label>Profesional</label>
           <select id="profesionales" name="profesionales">
-            <option value="JavierPerez">Javier Perez</option>
-            <option value="GonzaloRamirez">Gonzalo Ramirez</option>
-            <option value="Sabrina Fernandez">Sabrina Fernandez</option>
+            <option></option>
           </select>
         </div>
       </div>
