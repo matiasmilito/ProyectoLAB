@@ -1,8 +1,22 @@
 import React from "react";
 import './staff.css';
+import {useEffect, useState} from "react";
+import {httpGet2} from "../../utils/httpFunctions";
 
 const Staff = () => {
-    const Medicos = [
+
+    const [Medicos, setMedicos] = useState([])
+
+    const fetchMedicos = () => {
+        httpGet2('api/medicos/')
+            .then((res) => {
+                setMedicos(res.data)
+                console.log(res.data)
+            })}
+
+    let imgUrl = 'https://thumbnails.production.thenounproject.com/yHA0EnKW2hpoIb8PgqTvjLDfz-w=/fit-in/1000x1000/photos.production.thenounproject.com/photos/8D87F5C4-ECE2-44DC-BA78-344CE691F320.jpg'
+    useEffect(fetchMedicos, [])
+    /*const Medicos = [
         {
             id: 1,
             imgUrl: 'https://thumbnails.production.thenounproject.com/yHA0EnKW2hpoIb8PgqTvjLDfz-w=/fit-in/1000x1000/photos.production.thenounproject.com/photos/8D87F5C4-ECE2-44DC-BA78-344CE691F320.jpg',
@@ -45,7 +59,7 @@ const Staff = () => {
             nombre: 'Javier',
             apellido: 'Perez'
         }
-    ]
+    ]*/
 
     return (
         <div>
@@ -57,9 +71,9 @@ const Staff = () => {
             <div className="staff-items">
                 {Medicos.map((data) => (
                     <div key={data.id} className="staff-container">
-                        <img className="staff-img" src={data.imgUrl} alt=""/>
-                        <h2>{data.nombre} {data.apellido}</h2>
-                        <p>{data.especialidad}</p>
+                        <img className="staff-img" src={imgUrl} alt=""/>
+                        <h2>{data.name} {data.last_name}</h2>
+                        <p>{data.especialidades.descripcion_especialidad}</p>
                     </div>
                 ))}
             </div>
