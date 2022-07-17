@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { httpGet2, httpPost2 } from "../../utils/httpFunctions";
+import swal from "sweetalert";
+import {useNavigate} from "react-router-dom";
 
 const Turnos = () => {
 
@@ -14,6 +16,21 @@ const Turnos = () => {
   const [date, setDate] = useState()
   const [time, setTime] = useState()
   const [user, setUser] = useState()
+    const navigate = useNavigate();
+
+    const turnoconfirmado = () => {
+        swal({
+            title: 'Su turno ha sido guardado con éxito',
+            icon: 'success'
+        })
+    }
+
+    const turnorechazado = () => {
+        swal({
+            title: 'No se ha podido guardar el turno',
+            icon: 'error'
+        })
+    }
  
   const fetchmedicos = () => {
     httpGet2('api/medicos')
@@ -46,21 +63,25 @@ const Turnos = () => {
     console.log("hola");
   }
 
-  const turn = () => {
-      httpPost2('api/turnos/', {fechaturno_turno: date, horaturno_turno: time, usuario_turno: user, medico_turno: profesional, sede_turno: sede
-      })
-      console.log("hola");
-  }
+  const turn = (e) => {
+      e.preventDefault()
+      httpPost2('api/turnos/', {fechaturno_turno: date, horaturno_turno: time, usuario_turno: user, medico_turno: profesional, sede_turno: sedeSeleccionada
+      }).then((res) => {
+          navigate('/')
+          turnoconfirmado();
+      }).catch(() => {
+          turnorechazado();
+  })}
 
 
   return (
-      <form onSubmit={turn}>
+     <form onSubmit={turn}>
         <div>
           <h1>Turnos</h1>
         </div>
         <div>
           <label>Especialidad</label>
-          <select 
+          <select
             id="especialidad" 
             name="especialidad"
             value={especialidad} 
@@ -75,7 +96,7 @@ const Turnos = () => {
         </div>
         <div>
           <label>Profesional</label>
-          <select  
+          <select
             id="profesionales" 
             name="profesionales"
             value={profesional} 
@@ -91,10 +112,10 @@ const Turnos = () => {
         </div>
         <div>
           <label>Sede</label>
-          <select  
+          <select
             id="sede" 
             name="sede" 
-            value={sede}
+            value={sedeSeleccionada}
             disabled={!profesional}
             onChange={event => setSedeSeleccionada(parseInt(event.target.value))}>
             <option selected disabled>Seleccione la Sede</option>
@@ -103,7 +124,7 @@ const Turnos = () => {
                 return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
               })
             }
-          </select> 
+          </select>
         </div>
         <div>
           <label>Dia</label>
@@ -111,7 +132,7 @@ const Turnos = () => {
           type="date"
           disabled={!sede}
           value={date}
-          onChange={event => setDate(event.target.value)}/> 
+          onChange={event => setDate(event.target.value)}/>
         </div>
         <div>
           <label>Horario</label>
@@ -131,6 +152,7 @@ const Turnos = () => {
         </div>
         <button type="submit">enviar</button>
       </form>
+
   );
 }
 
