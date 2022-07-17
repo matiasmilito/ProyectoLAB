@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { httpGet2 } from "../../utils/httpFunctions";
+import { httpGet2, httpPost2 } from "../../utils/httpFunctions";
 
 const Turnos = () => {
 
@@ -9,7 +9,12 @@ const Turnos = () => {
   const [especialidad, setEspecialidad] = useState()
   const [profesional, setProfesional] = useState()
   const [medicosFilter, setmedicosFilter] = useState([])
-
+  const [sede, setSede] = useState([])
+  const [sedeSeleccionada, setSedeSeleccionada] = useState()
+  const [date, setDate] = useState()
+  const [time, setTime] = useState()
+  const [user, setUser] = useState()
+ 
   const fetchmedicos = () => {
     httpGet2('api/medicos')
         .then((res) => setMedicos(res.data))
@@ -20,8 +25,14 @@ const Turnos = () => {
         .then((res) => setEspecialidades(res.data))
   }
 
+  const fetchsede = () => {
+    httpGet2('api/sede')
+        .then((res) => setSede(res.data))
+  }
+
   useEffect(fetchmedicos, [])
   useEffect(fetchespecialidades, [])
+  useEffect(fetchsede, [])
 
   const selectEspecialidad = (value) => {
     setEspecialidad(value)
@@ -35,9 +46,15 @@ const Turnos = () => {
     console.log("hola");
   }
 
+  const turn = () => {
+      httpPost2('api/turnos/', {fechaturno_turno: date, horaturno_turno: time, usuario_turno: user, medico_turno: profesional, sede_turno: sede
+      })
+      console.log("hola");
+  }
+
 
   return (
-      <div>
+      <form onSubmit={turn}>
         <div>
           <h1>Turnos</h1>
         </div>
@@ -45,8 +62,10 @@ const Turnos = () => {
           <label>Especialidad</label>
           <select 
             id="especialidad" 
-            name="especialidad" 
+            name="especialidad"
+            value={especialidad} 
             onChange={event => selectEspecialidad(parseInt(event.target.value))}>
+              <option selected disabled>Seleccione Especialidad</option>
               {
                 especialidades.map(e => {
                   return <option value={e.id}>{e.descripcion_especialidad}</option>
@@ -58,10 +77,11 @@ const Turnos = () => {
           <label>Profesional</label>
           <select  
             id="profesionales" 
-            name="profesionales" 
+            name="profesionales"
+            value={profesional} 
             disabled={!especialidad} 
             onChange={event => setProfesional(parseInt(event.target.value))}>
-            <option selected>Seleccione Profesional</option>
+            <option selected disabled>Seleccione Profesional</option>
             {
               medicosFilter.map(m => {
                 return <option value={m.id}>{m.name} {m.last_name}</option>
@@ -69,7 +89,48 @@ const Turnos = () => {
             }
           </select>
         </div>
-      </div>
+        <div>
+          <label>Sede</label>
+          <select  
+            id="sede" 
+            name="sede" 
+            value={sede}
+            disabled={!profesional}
+            onChange={event => setSedeSeleccionada(parseInt(event.target.value))}>
+            <option selected disabled>Seleccione la Sede</option>
+            {
+              sede.map(s => {
+                return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
+              })
+            }
+          </select> 
+        </div>
+        <div>
+          <label>Dia</label>
+          <input 
+          type="date"
+          disabled={!sede}
+          value={date}
+          onChange={event => setDate(event.target.value)}/> 
+        </div>
+        <div>
+          <label>Horario</label>
+          <input 
+          type="time"
+          disabled={!date}
+          value={time}
+          onChange={event => setTime(event.target.value)}/> 
+        </div>
+        <div>
+          <label>User</label>
+          <input 
+          type="user"
+          disabled={!time}
+          value={user}
+          onChange={event => setUser(parseInt(event.target.value))}/> 
+        </div>
+        <button type="submit">enviar</button>
+      </form>
   );
 }
 
