@@ -16,7 +16,7 @@ const Turnos = () => {
   const [date, setDate] = useState()
   const [time, setTime] = useState()
   const [user, setUser] = useState()
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     const turnoconfirmado = () => {
         swal({
@@ -60,7 +60,6 @@ const Turnos = () => {
       return false;
     })
     setmedicosFilter(medicosFiltrados);
-    console.log("hola");
   }
 
   const turn = (e) => {
@@ -130,7 +129,7 @@ const Turnos = () => {
           <label>Dia</label>
           <input 
           type="date"
-          disabled={!sede}
+          disabled={!sedeSeleccionada}
           value={date}
           onChange={event => setDate(event.target.value)}/>
         </div>

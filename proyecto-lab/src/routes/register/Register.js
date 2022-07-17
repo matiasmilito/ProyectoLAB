@@ -14,6 +14,7 @@ const Register = () => {
     const [nro_afiliado, setAfiliado] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [obrasocial, setObrasocial] = useState([])
     const navigate = useNavigate()
 
     const mostrarAlerta = () => {
