@@ -63,9 +63,9 @@ class SedeSerializer(serializers.ModelSerializer):
 
 
 class TurnosSerializer(serializers.ModelSerializer):
-    usuariosturnos = RegisterSerializer(source='usuario_turno',write_only=True)
-    medicosturnos = MedicosSerializer(source='medico_turno',write_only=True)
-    sedeturnos = SedeSerializer(source='sede_turno',write_only=True)
+    usuariosturnos = RegisterSerializer(source='usuario_turno',read_only=True)
+    medicosturnos = MedicosSerializer(source='medico_turno',read_only=True)
+    sedeturnos = SedeSerializer(source='sede_turno',read_only=True)
 
     class Meta:
         model = Turnos
