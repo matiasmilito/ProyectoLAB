@@ -1,67 +1,20 @@
-/* .form-container {
-    /* display: flex;
-    flex-direction: column; */
-    /* display: block;
-    justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 300px;
-    margin: 40px auto;
-
-}
-
-.username-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 10px;
-    margin: 10px;
-}
-
-.password-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 10px;
-}
-
-.username-label {
-    padding-bottom: 4px;
-}
-
-.password-label {
-    padding-bottom: 4px;
-}
-
-.login-button {
-    padding: 8px 20px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    width: 120px;
-    margin: auto;
-    background-color: #3acbf7;
-    color: black;
-} */ 
-
-.login {
+.turnos-page {
     display: flex;
     align-items: center;
     background-color: #00008B;
     justify-content: center;
-    height: 100vh;
+    height: max-content;
+    padding: 20px;
 }
 
-.form-container {
+.turnos-container {
     background-color: #15172b;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 500px;
+    height: 760px;
     padding: 20px;
     width: 400;
 }
-
 .title {
     color: #eee;
     font-family: sans-serif;
@@ -80,13 +33,13 @@
     text-align: center;
   }
 
-  .input-container {
+.input-container {
     height: 50px;
     position: relative;
     width: 100%;
-  }
+}
 
-  .ic1 {
+.ic1 {
     margin-top: 40px;
   }
   

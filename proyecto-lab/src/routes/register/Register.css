@@ -1,64 +1,19 @@
-/* .form-container {
-    /* display: flex;
-    flex-direction: column; */
-    /* display: block;
-    justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 300px;
-    margin: 40px auto;
 
-}
-
-.username-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 10px;
-    margin: 10px;
-}
-
-.password-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 10px;
-}
-
-.username-label {
-    padding-bottom: 4px;
-}
-
-.password-label {
-    padding-bottom: 4px;
-}
-
-.login-button {
-    padding: 8px 20px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    width: 120px;
-    margin: auto;
-    background-color: #3acbf7;
-    color: black;
-} */ 
-
-.login {
+.Register {
     display: flex;
     align-items: center;
     background-color: #00008B;
     justify-content: center;
-    height: 100vh;
+    height: max-content;
+    padding: 20px;
 }
 
-.form-container {
+.formRegister-container {
     background-color: #15172b;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 500px;
     padding: 20px;
+    height: 820px;
     width: 400;
 }
 
@@ -67,7 +22,7 @@
     font-family: sans-serif;
     font-size: 36px;
     font-weight: 600;
-    margin-top: 15px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -80,7 +35,9 @@
     text-align: center;
   }
 
-  .input-container {
+
+
+.inputR-container {
     height: 50px;
     position: relative;
     width: 100%;
@@ -113,7 +70,7 @@
     height: 20px;
     left: 20px;
     position: absolute;
-    top: -20px;
+    top: -30px;
     transform: translateY(0);
     transition: transform 200ms;
     width: 76px;
@@ -123,8 +80,8 @@
     width: 50px;
   }
   
-  .input:focus ~ .cut,
-  .input:not(:placeholder-shown) ~ .cut {
+  .input:focus .cut
+  .input:not(:placeholder-shown) .cut {
     transform: translateY(8px);
   }
   
@@ -137,19 +94,19 @@
     position: absolute;
     transform-origin: 0 50%;
     transition: transform 200ms, color 200ms;
-    top: 20px;
+    top: 10px;
   }
   
-  .input:focus ~ .placeholder,
-  .input:not(:placeholder-shown) ~ .placeholder {
+  .input:focus  .placeholder
+  .input:not(:placeholder-shown) .placeholder {
     transform: translateY(-30px) translateX(10px) scale(0.75);
   }
   
-  .input:not(:placeholder-shown) ~ .placeholder {
+  .input:not(:placeholder-shown) .placeholder {
     color: #808097;
   }
   
-  .input:focus ~ .placeholder {
+  .input:focus  .placeholder {
     color: #dc2f55;
   }
   
@@ -163,7 +120,7 @@
     font-size: 18px;
     height: 50px;
     margin-top: 38px;
-    outline: 0;
+    outline: 0; 
     text-align: center;
     width: 100%;
   }

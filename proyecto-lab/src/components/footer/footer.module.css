@@ -5,6 +5,7 @@
   flex-direction: row;
   padding: 10px 100px;
   justify-content: space-around;
+  bottom: 0px;
 }
 
 .mapa {

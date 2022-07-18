@@ -42,27 +42,39 @@ const mostrarError = () => {
   return (
       <div className="login">
         <form className="form-container" onSubmit={login}>
-          <div className="username-container">
-            <label className="username-label">Username</label>
+          <div className="title">
+            <h2>Bienvenido</h2>
+          </div>
+          <div>
+            <h3 className="subtitle">Inicie Sesion</h3>
+          </div>
+          <div className="username-container input-container ic1">
             <input
+            className="input"
+            id="username"
                 type="text"
-                placeholder="tuUsuarioEjemplo"
+                placeholder=""
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
+            <div className="cut"></div>
+            <label for="username" className="placeholder">Username</label>            
           </div>
-          <div className="password-container">
-            <label className="password-label">Password</label>
+          <div className="password-container input-container ic2">
             <input
+                className="input"
+                id="password"
                 type="password"
-                placeholder="Ingrese su contraseña"
+                placeholder=""
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+            <div className="cut cut-short"></div>
+            <label for="password" className="placeholder">Password</label>
           </div>
           {/* <div className="button-container"> */}
-            <button type="submit" className="login-button">Ingresar</button>
-            <Link to={'/register'}><button className="login-button">Registrarme</button></Link>
+            <button type="submit" className="submit">Ingresar</button>
+            <Link to={'/register'}><button className="submit">Registrarme</button></Link>
           {/* </div> */}
         </form>
       </div>

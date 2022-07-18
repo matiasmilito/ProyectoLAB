@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { httpGet2, httpPost2 } from "../../utils/httpFunctions";
+import { httpGet2, httpPost2, httpGet } from "../../utils/httpFunctions";
 import swal from "sweetalert";
 import {useNavigate} from "react-router-dom";
+import './turnos.css';
 
 const Turnos = () => {
 
@@ -15,7 +16,7 @@ const Turnos = () => {
   const [sedeSeleccionada, setSedeSeleccionada] = useState()
   const [date, setDate] = useState()
   const [time, setTime] = useState()
-  const [user, setUser] = useState()
+  const [user, setUser] = useState({})
   const navigate = useNavigate();
 
     const turnoconfirmado = () => {
@@ -50,6 +51,10 @@ const Turnos = () => {
   useEffect(fetchmedicos, [])
   useEffect(fetchespecialidades, [])
   useEffect(fetchsede, [])
+  useEffect(() => {
+    httpGet('api/me/').then((res) =>
+        setUser(res.data))
+}, [])
 
   const selectEspecialidad = (value) => {
     setEspecialidad(value)
@@ -64,7 +69,7 @@ const Turnos = () => {
 
   const turn = (e) => {
       e.preventDefault()
-      httpPost2('api/turnos/', {fechaturno_turno: date, horaturno_turno: time, usuario_turno: user, medico_turno: profesional, sede_turno: sedeSeleccionada
+      httpPost2('api/turnos/', {fechaturno_turno: date, horaturno_turno: time, usuario_turno: user.id, medico_turno: profesional, sede_turno: sedeSeleccionada
       }).then((res) => {
           navigate('/')
           turnoconfirmado();
@@ -74,13 +79,14 @@ const Turnos = () => {
 
 
   return (
-     <form onSubmit={turn}>
-        <div>
+    <div className="turnos-page">
+     <form onSubmit={turn} className="turnos-container">
+        <div className="title">
           <h1>Turnos</h1>
         </div>
-        <div>
-          <label>Especialidad</label>
+        <div className="input-container ic1">
           <select
+          className="input"
             id="especialidad" 
             name="especialidad"
             value={especialidad} 
@@ -92,10 +98,12 @@ const Turnos = () => {
                 }) 
               }
           </select>
+          <div className="cut"></div>
+          <label for="especialidad" className="placeholder">Especialidad</label>
         </div>
-        <div>
-          <label>Profesional</label>
+        <div className="input-container ic1">
           <select
+          className="input"
             id="profesionales" 
             name="profesionales"
             value={profesional} 
@@ -108,10 +116,12 @@ const Turnos = () => {
               }) 
             }
           </select>
+          <div className="cut"></div>
+          <label for="profesionales" className="placeholder">Profesional</label>
         </div>
-        <div>
-          <label>Sede</label>
+        <div className="input-container ic1">
           <select
+          className="input"
             id="sede" 
             name="sede" 
             value={sedeSeleccionada}
@@ -124,34 +134,48 @@ const Turnos = () => {
               })
             }
           </select>
+          <div className="cut"></div>
+          <label for="sede" className="placeholder">Sede</label>
         </div>
-        <div>
-          <label>Dia</label>
+        <div className="input-container ic1">
           <input 
+          className="input"
+          id="date"
           type="date"
           disabled={!sedeSeleccionada}
           value={date}
           onChange={event => setDate(event.target.value)}/>
+          <div className="cut"></div>
+          <label for="date" className="placeholder">Dia</label>
         </div>
-        <div>
-          <label>Horario</label>
+        <div className="input-container ic1">
           <input 
+          className="input"
+          id="time"
           type="time"
           disabled={!date}
           value={time}
           onChange={event => setTime(event.target.value)}/> 
+          <div className="cut"></div>
+          <label for="time" className="placeholder">Horario</label>
         </div>
-        <div>
-          <label>User</label>
-          <input 
-          type="user"
-          disabled={!time}
-          value={user}
-          onChange={event => setUser(parseInt(event.target.value))}/> 
+        <div className="input-container ic2">
+          <select 
+            className="input"
+            id="user"
+            type="user"
+            disabled={!time}
+            value={user.id}
+            onChange={event => setUser(parseInt(event.target.value))}>
+               <option selected defaultValue={user.id}>{user.first_name}</option>
+                 <h3>Mi nombre y apellido es {user.first_name}  {user.last_name}</h3>
+          </select>
+          <div className="cut"></div>
+          <label for="user" className="placeholder">User</label>
         </div>
-        <button type="submit">enviar</button>
+        <button type="submit" className="submit">Enviar</button>
       </form>
-
+    </div>        
   );
 }
 
