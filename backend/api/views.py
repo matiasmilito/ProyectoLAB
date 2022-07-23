@@ -56,7 +56,7 @@ class SedeViewSet(viewsets.ModelViewSet):
 
 class TurnosViewSet(viewsets.ModelViewSet):
     serializer_class = TurnosSerializer
-    queryset = Turnos.objects.all()
+    queryset = Turnos.objects.filter(turnodisponible=1)
 
 
 class DeViewSet(viewsets.ReadOnlyModelViewSet):

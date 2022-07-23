@@ -57,11 +57,13 @@ class User(AbstractUser):
 
 
 class Turnos(models.Model):
-    usuario_turno = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='usuariosturnos')
+    usuario_turno = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='usuariosturnos')
     medico_turno = models.ForeignKey(Medicos, null=False, on_delete=models.CASCADE, related_name='medicosturnos')
+    turnodisponible = models.BooleanField(null=False, default=0)
     # especialidad_turno = models.ForeignKey(Especialidad, null=False, on_delete= models.CASCADE)
     sede_turno = models.ForeignKey(Sede, null=False, on_delete=models.CASCADE, related_name='sedeturnos')
     fechaturno_turno = models.DateField(null=True)
     horaturno_turno = models.TimeField(null=True)
+
 
 # Como hago para que en turnos me traiga los medicos que tengan la especialidad que elegí?
