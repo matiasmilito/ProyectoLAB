@@ -4,10 +4,11 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
-from api.views import RegisterView, TurnosViewSet, DeViewSet
+from api.views import RegisterView, TurnosViewSet, DoctorEspecialidadViewSet
 from api.views import me
 from api.views import MedicosViewSet, EspecialidadViewSet, SedeViewSet, ObraSocialViewSet
 
+from api.views import TurnosDisponiblesViewSet
 
 router = routers.DefaultRouter()
 router.register(r'medicos', MedicosViewSet)
@@ -15,7 +16,8 @@ router.register(r'especialidad', EspecialidadViewSet)
 router.register(r'sede', SedeViewSet)
 router.register(r'obrasocial', ObraSocialViewSet)
 router.register(r'turnos', TurnosViewSet)
-router.register(r'de', DeViewSet)
+router.register(r'doctorespecialidad', DoctorEspecialidadViewSet)
+router.register(r'turnosdisponibles', TurnosDisponiblesViewSet)
 
 
 urlpatterns = [

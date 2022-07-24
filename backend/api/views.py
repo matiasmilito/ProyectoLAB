@@ -56,10 +56,10 @@ class SedeViewSet(viewsets.ModelViewSet):
 
 class TurnosViewSet(viewsets.ModelViewSet):
     serializer_class = TurnosSerializer
-    queryset = Turnos.objects.filter(turnodisponible=1)
+    queryset = Turnos.objects.all()
 
 
-class DeViewSet(viewsets.ReadOnlyModelViewSet):
+class DoctorEspecialidadViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = MedicosSerializer
     queryset = Medicos.objects.all()
 
@@ -73,3 +73,7 @@ class DeViewSet(viewsets.ReadOnlyModelViewSet):
         #print(id_especialidad)
         return queryset
 # Create your views here.
+
+class TurnosDisponiblesViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = TurnosSerializer
+    queryset = Turnos.objects.filter(turnodisponible=1)

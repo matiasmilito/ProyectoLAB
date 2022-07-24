@@ -11,7 +11,7 @@ const Register = () => {
     const [first_name, setName] = useState("")
     const [last_name, setLastname] = useState("")
     const [email, setEmail] = useState("")
-    const [obra_social, setObra] = useState("") 
+    const [obraSocialSeleccionada, setobraSocialSeleccionada] = useState()
     const [nro_afiliado, setAfiliado] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -38,7 +38,7 @@ const Register = () => {
             first_name : first_name,
             last_name : last_name,
             email : email,
-            obra_social : obra_social,
+            obra_social : obraSocialSeleccionada,
             nro_afiliado : nro_afiliado,
             username : username,
             password : password
@@ -113,8 +113,8 @@ const Register = () => {
                    className="input"
                    placeholder=""
                    disabled={!email}
-                   required value={obra_social} 
-                   onChange={event => setObra(parseInt(event.target.value))}>
+                   required value={obraSocialSeleccionada}
+                   onChange={event => setobraSocialSeleccionada(parseInt(event.target.value))}>
                     <option selected disabled>Seleccione Obra Social</option>
                     {
                         obrasocial.map(o => {
@@ -131,7 +131,7 @@ const Register = () => {
                   id="numeroafiliado"
                       type="text"
                       placeholder=""
-                      disabled={!obra_social}
+                      disabled={!obraSocialSeleccionada}
                       required value={nro_afiliado}
                       onChange={(e) => setAfiliado(e.target.value)}
                   />
