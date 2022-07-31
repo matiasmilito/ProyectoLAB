@@ -1,9 +1,13 @@
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
 # Create your models here.
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
 class Especialidad(models.Model):
     descripcion_especialidad = models.CharField(max_length=30, blank=False)
 
@@ -64,6 +68,5 @@ class Turnos(models.Model):
     sede_turno = models.ForeignKey(Sede, null=False, on_delete=models.CASCADE, related_name='sedeturnos')
     fechaturno_turno = models.DateField(null=True)
     horaturno_turno = models.TimeField(null=True)
-
 
 # Como hago para que en turnos me traiga los medicos que tengan la especialidad que elegí?

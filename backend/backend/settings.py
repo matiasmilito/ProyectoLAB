@@ -165,3 +165,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'api.User'
 
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'sanatoriogranrosario@hotmail.com'
+EMAIL_HOST_PASSWORD = 'sgr.2022'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
