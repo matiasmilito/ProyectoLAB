@@ -86,4 +86,32 @@ class TurnosSerializer(serializers.ModelSerializer):
         model = Turnos
         fields = '__all__'
 
+    def update(self, instance, validated_data):
+        instance.fechaturno_turno = validated_data.get('fechaturno_turno', instance.fechaturno_turno)
+        instance.horaturno_turno = validated_data.get('horaturno_turnoo', instance.horaturno_turno)
+        instance.usuario_turno = validated_data.get('usuario_turno', instance.usuario_turno)
+        instance.medico_turno = validated_data.get('medico_turno', instance.medico_turno)
+        instance.sede_turno = validated_data.get('sede_turno', instance.sede_turno)
+        instance.turnodisponible = validated_data.get('turnodisponible', instance.turnodisponible)
+
+        print(validated_data)
+        dia = instance.fechaturno_turno
+        hora = instance.horaturno_turno
+        lugar = instance.sede_turno
+        medico = instance.medico_turno
+        if instance.turnodisponible is False:
+            subject = 'Turno confirmado SGR'
+            message = 'Hola , su turno con ha sido confirmado'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['bdinamo74@gmail.com']
+            send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+        instance.save()
+        return instance
+
+
+
+
+
+
+
 
