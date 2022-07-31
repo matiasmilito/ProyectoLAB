@@ -29,7 +29,8 @@ export const httpPost2 = async (endpoint, data) => {
     )
 }
 
-export const httpPatch = async (endpoint, data) => {
-    return axios.patch(baseUrl + endpoint, data,
+
+export const httpPut = async (endpoint, data) => {
+    return axios.put(baseUrl + endpoint, data,
     )
 }
