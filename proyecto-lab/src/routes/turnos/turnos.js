@@ -22,6 +22,7 @@ const Turnos = () => {
     const [turnos, setTurnos] = useState([])
     const navigate = useNavigate();
 
+    console.log(timeSelected)
 
     const turnoconfirmado = () => {
         swal({
@@ -101,7 +102,7 @@ const Turnos = () => {
     }
 
 
-    const turn = (e) => {
+    /*const turn = (e) => {
         e.preventDefault()
         httpPut(`api/turnos/${timeSelected}/`, {fechaturno_turno: dateSelected, horaturno_turno: timeSelected,
             usuario_turno: user.id, medico_turno: profesional, sede_turno: sedeSeleccionada,
@@ -111,10 +112,10 @@ const Turnos = () => {
             turnoconfirmado();
         }).catch(() => {
             turnorechazado();
-    })
-       }
+        })
+    }  */
 
-    /*const turn = (e) => {
+    const turn = (e) => {
         e.preventDefault()
         httpPatch(`api/turnos/${timeSelected}/` , {usuario_turno: user.id,
             turnodisponible: false
@@ -124,7 +125,7 @@ const Turnos = () => {
         }).catch(() => {
             turnorechazado();
         })
-    }*/
+    }
 
     return (
         <div className="turnos-page">
