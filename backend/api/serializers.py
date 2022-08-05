@@ -1,4 +1,3 @@
-
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from rest_framework import serializers, response
@@ -31,7 +30,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             nro_afiliado=validated_data['nro_afiliado'],
             obra_social=validated_data['obra_social'],
-            #num_matricula=validated_data['num_matricula'],
+            # num_matricula=validated_data['num_matricula'],
             username=validated_data['username'],
             password=validated_data['password']
         )
@@ -53,7 +52,7 @@ class EspecialidadSerializer(serializers.ModelSerializer):
 
 
 class MedicosSerializer(serializers.ModelSerializer):
-    especialidades = EspecialidadSerializer(source='especialidad',read_only=True)
+    especialidades = EspecialidadSerializer(source='especialidad', read_only=True)
 
     class Meta:
         model = Medicos
@@ -70,17 +69,15 @@ class MeSerializer(serializers.ModelSerializer):
 
 
 class SedeSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Sede
         fields = "__all__"
 
 
-
 class TurnosSerializer(serializers.ModelSerializer):
-    usuariosturnos = RegisterSerializer(source='usuario_turno',read_only=True)
-    medicosturnos = MedicosSerializer(source='medico_turno',read_only=True)
-    sedeturnos = SedeSerializer(source='sede_turno',read_only=True)
+    usuariosturnos = RegisterSerializer(source='usuario_turno', read_only=True)
+    medicosturnos = MedicosSerializer(source='medico_turno', read_only=True)
+    sedeturnos = SedeSerializer(source='sede_turno', read_only=True)
 
     class Meta:
         model = Turnos
@@ -93,25 +90,16 @@ class TurnosSerializer(serializers.ModelSerializer):
         instance.medico_turno = validated_data.get('medico_turno', instance.medico_turno)
         instance.sede_turno = validated_data.get('sede_turno', instance.sede_turno)
         instance.turnodisponible = validated_data.get('turnodisponible', instance.turnodisponible)
-
-        print(validated_data)
         dia = instance.fechaturno_turno
         hora = instance.horaturno_turno
         lugar = instance.sede_turno
         medico = instance.medico_turno
+        mail = instance.usuario_turno.email
         if instance.turnodisponible is False:
             subject = 'Turno confirmado SGR'
-            message = 'Hola , su turno con ha sido confirmado'
+            message = 'Hola , su turno ha sido confirmado para el día ' + str(dia) + ' a las ' + str(hora) + ' con el doctor ' + str(medico) + ' en ' + str(lugar)
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = ['bdinamo74@gmail.com']
+            recipient_list = [mail]
             send_mail(subject, message, email_from, recipient_list, fail_silently=False)
         instance.save()
         return instance
-
-
-
-
-
-
-
-
