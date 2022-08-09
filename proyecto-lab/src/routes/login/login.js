@@ -73,8 +73,8 @@ const mostrarError = () => {
             <label for="password" className="placeholder">Password</label>
           </div>
           {/* <div className="button-container"> */}
-            <button type="submit" className="submit">Ingresar</button>
-            <Link to={'/register'}><button className="submit">Registrarme</button></Link>
+            <input type="submit" className="submit" value='Ingresar'/>
+            <Link to={'/register'}><input className="submit" value='Registrarme'/></Link>
           {/* </div> */}
         </form>
       </div>

@@ -161,21 +161,29 @@
     color: #eee;
     cursor: pointer;
     font-size: 18px;
-    height: 50px;
-    margin-top: 38px;
-    outline: 0;
+    padding: auto;
     text-align: center;
     width: 100%;
+    
   }
+
+  a:link, a:visited, a:active {
+    text-decoration:none;
+}
   
   .submit:active {
     background-color: #06b;
   }
 
-  button:hover {
+  .submit:hover {
     background-color: white;
     color: #6568F4;
     transition: 250ms;
   }
+
+  @media only screen and (max-width: 600px) {
+    button {
+      display: inline;
+    }
   
-  
+  }

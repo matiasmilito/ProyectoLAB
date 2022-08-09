@@ -165,7 +165,7 @@ const Register = () => {
                   <label for="password" className="placeholder">Contraseña</label>
               </div>
               <div>
-                  <button type="submit" className="submit">Registrarme</button>
+                  <input type="submit" className="submit" value='Registrarme'/>
               </div>
           </form>
       </div>

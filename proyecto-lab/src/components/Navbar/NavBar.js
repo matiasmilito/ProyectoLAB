@@ -34,7 +34,7 @@ render() {
         })}
       </ul>
       {/* <div>{isLoggedIn ? <Link to="/profile"><Button>Perfil</Button></Link> : <Link to="/login"><Button>Ingresar</Button></Link>}</div> */}
-      <Link to="/login"><Button>Ingresar</Button></Link>
+      <Link to="/login"><Button className='but'>Ingresar</Button></Link>
     </nav>
   )
 }

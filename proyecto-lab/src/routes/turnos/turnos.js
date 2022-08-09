@@ -236,7 +236,7 @@ const Turnos = () => {
                     </select>
                     <label for="user" className="placeholder">User</label>
                 </div>
-                <button type="submit" className="submit">Enviar</button>
+                <input type="submit" className="submit" />
             </form>
         </div>
     );
