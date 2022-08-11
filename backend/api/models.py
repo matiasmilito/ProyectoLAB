@@ -70,5 +70,3 @@ class Turnos(models.Model):
     horaturno_turno = models.TimeField(null=True)
 
 
-
-# Como hago para que en turnos me traiga los medicos que tengan la especialidad que elegí?

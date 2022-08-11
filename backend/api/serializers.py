@@ -23,8 +23,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         first_name = validated_data['first_name']
         last_name = validated_data['last_name']
-
-        user = User.objects.create_user(
+        email = validated_data['email']
+        user = User(
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             email=validated_data['email'],
@@ -41,6 +41,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [validated_data['email']]
             send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+
+        user.save()
 
         return user
 
