@@ -25,9 +25,9 @@ const Register = () => {
         })
     }
 
-    const mostrarError = () => {
+    const mostrarError = (parametro) => {
         swal({
-            title: 'No se pudo registrar, intente nuevamente',
+            title: parametro,
             icon: 'error'
         })
     }
@@ -45,8 +45,8 @@ const Register = () => {
         }).then(() => {
             mostrarAlerta();
             navigate('/login');
-        }).catch(() => {
-            mostrarError();
+        }).catch((error) => {
+            mostrarError(error.response.data);
         })
     }
 

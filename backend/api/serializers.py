@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from rest_framework import serializers, response
+from rest_framework.exceptions import ValidationError
+from rest_framework.validators import UniqueValidator
 
 from api.models import ObraSocial, Medicos, Especialidad, Sede, User, Turnos
 
@@ -34,6 +36,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             password=validated_data['password']
         )
+
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("El mail ya existe"
+                                  "")
 
         if user is not {}:
             subject = 'Bienvenido a SGR'
