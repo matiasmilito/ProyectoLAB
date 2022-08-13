@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";  
 import { httpGet } from "../../utils/httpFunctions";
+import {useNavigate} from "react-router-dom";
 import {Button} from "../../components/button/Button";
 
 const Profile = () => {
 
     const [userData, setUserData] = useState({})
     const [TurnosUsuario, setTurnosUsuario] = useState([])
+    const navigate = useNavigate()
 
     const fetchTurnosUsuario = () => {
         httpGet(`api/turnospaciente/?id_paciente=${parseInt(userData.id)}`)
@@ -19,8 +21,14 @@ const Profile = () => {
         setUserData(res.data))
     }, [])
 
+    const logout = () => {
+        /*localStorage.clear();*/
+        localStorage.removeItem('token')
+        /*window.location.href = '/';*/
+        navigate('/');
+    }
 
-      /*useEffect(fetchTurnosUsuario, [])*/
+    /*useEffect(fetchTurnosUsuario, [])*/
 
 
     return (
@@ -30,7 +38,11 @@ const Profile = () => {
             <h3>Mi nombre y apellido es {userData.first_name}  {userData.last_name}</h3>
             <h3>Mi correo es {userData.email}</h3>
             <h3>Mi nombre de usuario es {userData.username}</h3>
-        </div><div>
+        </div>
+            <div>
+                <button href="#" onClick={logout}>Cerrar sesión</button>
+            </div>
+            <div>
         <button onClick={fetchTurnosUsuario}>Ver mis turnos</button>
         </div> <div>
     <table className="table table-dark">
