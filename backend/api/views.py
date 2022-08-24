@@ -73,8 +73,8 @@ class DoctorEspecialidadViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = []
         # print(id_especialidad)
         return queryset
-
-
+        #en este endpoint se recibe como parametro un id de especialidad y se filtran los medicos que contenga este id
+        # en caso de que no haya ninguno se devuelve una lista vacia
 # Create your views here.
 
 class TurnosDisponiblesViewSet(viewsets.ReadOnlyModelViewSet):

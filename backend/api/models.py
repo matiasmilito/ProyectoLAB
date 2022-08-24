@@ -6,11 +6,12 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+#Definimos las clases que luego seran entidades de base de datos
 
 class Especialidad(models.Model):
     descripcion_especialidad = models.CharField(max_length=30, blank=False)
 
+     #formateamos el objeto a una manera legible
     def nombre_completo(self):
         return " {} ".format(self.descripcion_especialidad)
 

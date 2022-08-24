@@ -7,12 +7,12 @@ from rest_framework.validators import UniqueValidator
 from api.models import ObraSocial, Medicos, Especialidad, Sede, User, Turnos
 
 from backend import settings
-
+#las clases serializers pasan los objetos a json y los json a objetos
 
 class ObraSocialSerializer(serializers.ModelSerializer):
     class Meta:
         model = ObraSocial
-        fields = "__all__"
+        fields = "__all__" #se seleccionan todos los campos del modelo obra social
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -21,8 +21,9 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'nro_afiliado', 'obra_social', 'username', 'password']
-
-    def create(self, validated_data):
+        #se seleccionan los campos que están en fields del modelo user
+    def create(self, validated_data): #en esta funcion se toma como parametro los input del register
+        #y se guardan en distintas variables que luego van a ser insertadas en la tabla de usuarios.
         first_name = validated_data['first_name']
         last_name = validated_data['last_name']
         email = validated_data['email']
@@ -38,8 +39,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
 
         if User.objects.filter(email=email).exists():
-            raise ValidationError("El mail ya existe"
-                                  "")
+            raise ValidationError("El mail ya existe")
+        #si el mail ingresado por el usuario ya existe, se devuelve el mensaje "el mail ya existe"
 
         if user is not {}:
             subject = 'Bienvenido a SGR'
@@ -49,7 +50,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
         user.save()
-
+        #si el usuario no está vacio, se envia el mail con los datos del mismo.
         return user
 
 
@@ -61,7 +62,7 @@ class EspecialidadSerializer(serializers.ModelSerializer):
 
 class MedicosSerializer(serializers.ModelSerializer):
     especialidades = EspecialidadSerializer(source='especialidad', read_only=True)
-
+    #la linea de arriba hace referencia a que medicos tiene una foreign key del objeto especialidad
     class Meta:
         model = Medicos
         fields = "__all__"
@@ -92,6 +93,7 @@ class TurnosSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def update(self, instance, validated_data):
+        #en la funcion update se recibe como parametros los input del turno y se guardan en distintas variables
         instance.fechaturno_turno = validated_data.get('fechaturno_turno', instance.fechaturno_turno)
         instance.horaturno_turno = validated_data.get('horaturno_turnoo', instance.horaturno_turno)
         instance.usuario_turno = validated_data.get('usuario_turno', instance.usuario_turno)
@@ -110,4 +112,5 @@ class TurnosSerializer(serializers.ModelSerializer):
             recipient_list = [mail]
             send_mail(subject, message, email_from, recipient_list, fail_silently=False)
         instance.save()
+        #si el turno pasa a estar no disponible(is false), se envia el mail con los datos del turno
         return instance
