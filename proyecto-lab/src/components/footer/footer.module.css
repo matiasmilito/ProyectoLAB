@@ -28,6 +28,7 @@
 }
 
 .link {
+  color: #ffffff;
   text-decoration: none;
   display: flex;
   align-items: center;
