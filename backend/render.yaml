@@ -4,4 +4,5 @@ services:
     env: python
     buildCommand: |
       apt-get update && apt-get install -y python3-dev
+      pip install --upgrade pip
       pip install -r requirements.txt
