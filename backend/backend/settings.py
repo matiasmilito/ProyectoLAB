@@ -171,3 +171,6 @@ EMAIL_HOST_PASSWORD = 'sgr.2022'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
