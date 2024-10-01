@@ -1,6 +1,8 @@
 const axios = require('axios');
 
-const baseUrl = 'http://127.0.0.1:8000/';
+// https://proyectolab.onrender.com
+// const baseUrl = 'http://127.0.0.1:8000/';
+const baseUrl = 'https://proyectolab.onrender.com/';
 
 export const httpGet = async (endpoint) => {
     return axios.get(baseUrl + endpoint, {
