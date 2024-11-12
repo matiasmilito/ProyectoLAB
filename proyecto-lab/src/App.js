@@ -3,13 +3,12 @@ import NavBar from "./components/Navbar/NavBar";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
 import Staff from "./routes/staff/staff";
-import Home from "./routes/home/home";
-import Sanatorio from "./routes/sanatorio/sanatorio";
+import Home from "./routes/home/Home";
 import Turnos from "./routes/turnos/turnos";
 import Login from "./routes/login/login";
 import Footer from "./components/footer/footer";
-import Register from "../src/routes/register/Register";
-import Profile from "../src/routes/profile/profile";
+import Register from "./routes/register/Register";
+import Profile from "./routes/profile/profile";
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <NavBar/>
         <Routes>
           <Route exact={true} path="/" element={<Home/>} />
-          <Route exact={true} path="/sanatorio" element={<Sanatorio/>} />
           <Route exact={true} path="/staff" element={<Staff/>} />
           <Route exact={true} path="/turnos" element={<Turnos/>} />
           <Route exact={true} path="/login" element={<Login/>} />

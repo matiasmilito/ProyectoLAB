@@ -2,7 +2,7 @@
     background-image: url("https://thumbnails.production.thenounproject.com/HrvNEMiYxKu8tvzoGLqxXAuJ1zI=/fit-in/1000x1000/photos.production.thenounproject.com/photos/08AE8A94-0075-4132-A35A-11A77EBF00FD.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 70%;
+    opacity: .7;
     width: 100%;
     height: 400px;
     display: flex;
