@@ -209,9 +209,11 @@ const Turnos = () => {
                                     onChange={event => selectDate(event.target.value)}>
                                     <option value="">Seleccione el día</option>
                                     {
-                                        dates.map(d => {
+                                        dates.length > 0
+                                        ? dates.map(d => {
                                             return <option value={d.fechaturno_turno}>{d.fechaturno_turno}</option>
                                         })
+                                        : <option value="">No hay fechas disponibles</option>
                                     }
                                 </select>
                                 <div className="cut"></div>
@@ -228,15 +230,21 @@ const Turnos = () => {
                                     onChange={event => selectTime(event.target.value)}>
                                     <option value="">Seleccione la hora</option>
                                     {
-                                        times.map(ti => {
+                                        times.length > 0
+                                        ? times.map(ti => {
                                             return <option value={ti.id}>{ti.horaturno_turno}</option>
                                         })
+                                        : <option value="">No hay horarios disponibles</option>
                                     }
                                 </select>
                                 <div className="cut"></div>
                                 <label htmlFor="sede" className="placeholder">Hora</label>
                             </div>
-                            <input type="submit" className="submit" />
+                            <input
+                                type="submit"
+                                className="submit"
+                                disabled={especialidadSeleccionada === '' || medicoSeleccionado === '' || sedeSeleccionada === '' || dateSelected === '' || timeSelected === ''}
+                            />
                         </>
                         : <p>Cargando...</p>
                 }
