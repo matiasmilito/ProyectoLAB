@@ -152,7 +152,7 @@ const Turnos = () => {
                                     name="especialidad"
                                     value={especialidadSeleccionada}
                                     onChange={event => selectEspecialidades(parseInt(event.target.value))}>
-                                    <option selected disabled>Seleccione Especialidad</option>
+                                    <option selected value={null} disabled>Seleccione Especialidad</option>
                                     {
                                         especialidades.map(e => {
                                             return <option value={e.id}>{e.descripcion_especialidad}</option>
@@ -170,7 +170,7 @@ const Turnos = () => {
                                     value={medicoSeleccionado}
                                     disabled={!especialidadSeleccionada}
                                     onChange={event => selectProfesionales(parseInt(event.target.value))}>
-                                    <option selected disabled>Seleccione Profesional</option>
+                                    <option selected value={null} disabled>Seleccione Profesional</option>
                                     {
                                         medicosFilter.map(m => {
                                             return <option value={m.id}>{m.name} {m.last_name}</option>
@@ -188,7 +188,7 @@ const Turnos = () => {
                                     value={sedeSeleccionada}
                                     disabled={!medicoSeleccionado}
                                     onChange={event => selectSedes(parseInt(event.target.value))}>
-                                    <option selected disabled>Seleccione la Sede</option>
+                                    <option selected value={null} disabled>Seleccione la Sede</option>
                                     {
                                         sedes.map(s => {
                                             return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
@@ -207,7 +207,7 @@ const Turnos = () => {
                                     value={dateSelected}
                                     disabled={!sedeSeleccionada}
                                     onChange={event => selectDate(event.target.value)}>
-                                    <option selected disabled>Seleccione el día</option>
+                                    <option selected value={null} disabled>Seleccione el día</option>
                                     {
                                         dates.map(d => {
                                             return <option value={d.fechaturno_turno}>{d.fechaturno_turno}</option>
@@ -226,7 +226,7 @@ const Turnos = () => {
                                     value={timeSelected}
                                     disabled={!dateSelected}
                                     onChange={event => selectTime(event.target.value)}>
-                                    <option selected disabled>Seleccione la hora</option>
+                                    <option selected value={null} disabled>Seleccione la hora</option>
                                     {
                                         times.map(ti => {
                                             return <option value={ti.id}>{ti.horaturno_turno}</option>
