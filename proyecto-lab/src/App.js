@@ -3,7 +3,7 @@ import NavBar from "./components/Navbar/NavBar";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
 import Staff from "./routes/staff/staff";
-import Home from "./routes/home/Home";
+import Home from "./routes/home/home";
 import Turnos from "./routes/turnos/turnos";
 import Login from "./routes/login/login";
 import Footer from "./components/footer/footer";
