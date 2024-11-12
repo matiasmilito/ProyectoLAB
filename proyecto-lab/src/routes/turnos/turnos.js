@@ -133,7 +133,7 @@ const Turnos = () => {
                     <h1>Turnos</h1>
                 </div>
                 {
-                    especialidades.length > 0 && medicos.length > 0 && sedes.length > 0 && dates.length > 0 && times.length > 0
+                    especialidades.length > 0 && medicos.length > 0 && sedes.length > 0 && turnos.length > 0
                         ? <>
                             <div className="input-container ic1">
                                 <select

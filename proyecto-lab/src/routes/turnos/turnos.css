@@ -7,6 +7,14 @@
     padding: 20px;
 }
 
+.cargando {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-top: 25px;
+}
+
 .turnos-container {
     background-color: #15172b;
     border-radius: 20px;
