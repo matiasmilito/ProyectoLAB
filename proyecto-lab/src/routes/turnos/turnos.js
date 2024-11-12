@@ -9,15 +9,15 @@ const Turnos = () => {
 
     const [medicos, setMedicos] = useState([])
     const [medicosFilter, setMedicosFilter] = useState([])
-    const [medicoSeleccionado, setMedicoSeleccionado] = useState(null)
+    const [medicoSeleccionado, setMedicoSeleccionado] = useState('')
     const [especialidades, setEspecialidades] = useState([])
-    const [especialidadSeleccionada, setEspecialidadSeleccionada] = useState(null)
+    const [especialidadSeleccionada, setEspecialidadSeleccionada] = useState('')
     const [sedes, setSedes] = useState([])
-    const [sedeSeleccionada, setSedeSeleccionada] = useState(null)
+    const [sedeSeleccionada, setSedeSeleccionada] = useState('')
     const [dates, setDates] = useState([])
-    const [dateSelected, setDateSelected] = useState(null)
+    const [dateSelected, setDateSelected] = useState('')
     const [times, setTimes] = useState([])
-    const [timeSelected, setTimeSelected] = useState(null)
+    const [timeSelected, setTimeSelected] = useState('')
     const [user, setUser] = useState({})
     const [turnos, setTurnos] = useState([])
     const navigate = useNavigate();
@@ -67,10 +67,10 @@ const Turnos = () => {
 
     const selectEspecialidades = (value) => {
         setEspecialidadSeleccionada(value)
-        setMedicoSeleccionado(null)
-        setSedeSeleccionada(null)
-        setDateSelected(null)
-        setTimeSelected(null)
+        setMedicoSeleccionado('')
+        setSedeSeleccionada('')
+        setDateSelected('')
+        setTimeSelected('')
         const medicosFiltrados = medicos.filter((m) => {
             if(value === m.especialidades.id){
                 return true;
@@ -82,15 +82,15 @@ const Turnos = () => {
 
     const selectProfesionales = (value) => {
         setMedicoSeleccionado(value)
-        setSedeSeleccionada(null)
-        setDateSelected(null)
-        setTimeSelected(null)
+        setSedeSeleccionada('')
+        setDateSelected('')
+        setTimeSelected('')
     }
 
     const selectSedes = (value) => {
         setSedeSeleccionada(value)
-        setDateSelected(null)
-        setTimeSelected(null)
+        setDateSelected('')
+        setTimeSelected('')
         const fechasFiltradas = turnos.filter((t) => {
             if(value === t.sedeturnos.id && medicoSeleccionado === t.medicosturnos.id){
                 return true;
@@ -102,7 +102,7 @@ const Turnos = () => {
 
     const selectDate = (value) => {
         setDateSelected(value)
-        setTimeSelected(null)
+        setTimeSelected('')
         const tiempoFiltrado = turnos.filter((t) => {
             if(value === t.fechaturno_turno){
                 return true;
@@ -152,7 +152,7 @@ const Turnos = () => {
                                     name="especialidad"
                                     value={especialidadSeleccionada}
                                     onChange={event => selectEspecialidades(parseInt(event.target.value))}>
-                                    <option selected value={null} disabled>Seleccione Especialidad</option>
+                                    <option value="">Seleccione Especialidad</option>
                                     {
                                         especialidades.map(e => {
                                             return <option value={e.id}>{e.descripcion_especialidad}</option>
@@ -170,7 +170,7 @@ const Turnos = () => {
                                     value={medicoSeleccionado}
                                     disabled={!especialidadSeleccionada}
                                     onChange={event => selectProfesionales(parseInt(event.target.value))}>
-                                    <option selected value={null} disabled>Seleccione Profesional</option>
+                                    <option value="">Seleccione Profesional</option>
                                     {
                                         medicosFilter.map(m => {
                                             return <option value={m.id}>{m.name} {m.last_name}</option>
@@ -188,7 +188,7 @@ const Turnos = () => {
                                     value={sedeSeleccionada}
                                     disabled={!medicoSeleccionado}
                                     onChange={event => selectSedes(parseInt(event.target.value))}>
-                                    <option selected value={null} disabled>Seleccione la Sede</option>
+                                    <option value="">Seleccione la Sede</option>
                                     {
                                         sedes.map(s => {
                                             return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
@@ -207,7 +207,7 @@ const Turnos = () => {
                                     value={dateSelected}
                                     disabled={!sedeSeleccionada}
                                     onChange={event => selectDate(event.target.value)}>
-                                    <option selected value={null} disabled>Seleccione el día</option>
+                                    <option value="">Seleccione el día</option>
                                     {
                                         dates.map(d => {
                                             return <option value={d.fechaturno_turno}>{d.fechaturno_turno}</option>
@@ -226,7 +226,7 @@ const Turnos = () => {
                                     value={timeSelected}
                                     disabled={!dateSelected}
                                     onChange={event => selectTime(event.target.value)}>
-                                    <option selected value={null} disabled>Seleccione la hora</option>
+                                    <option value="">Seleccione la hora</option>
                                     {
                                         times.map(ti => {
                                             return <option value={ti.id}>{ti.horaturno_turno}</option>
