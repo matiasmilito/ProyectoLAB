@@ -132,98 +132,104 @@ const Turnos = () => {
                 <div className="title">
                     <h1>Turnos</h1>
                 </div>
-                <div className="input-container ic1">
-                    <select
-                        className="input"
-                        id="especialidad"
-                        name="especialidad"
-                        value={especialidadSeleccionada}
-                        onChange={event => selectEspecialidades(parseInt(event.target.value))}>
-                        <option value="" disabled>Seleccione Especialidad</option>
-                        {
-                            especialidades.map(e => {
-                                return <option value={e.id}>{e.descripcion_especialidad}</option>
-                            })
-                        }
-                    </select>
-                    <div className="cut"></div>
-                    <label htmlFor="especialidad" className="placeholder">Especialidad</label>
-                </div>
-                <div className="input-container ic1">
-                    <select
-                        className="input"
-                        id="profesionales"
-                        name="profesionales"
-                        value={medicoSeleccionado}
-                        disabled={!especialidadSeleccionada}
-                        onChange={event => selectProfesionales(parseInt(event.target.value))}>
-                        <option value="" disabled>Seleccione Profesional</option>
-                        {
-                            medicosFilter.map(m => {
-                                return <option value={m.id}>{m.name} {m.last_name}</option>
-                            })
-                        }
-                    </select>
-                    <div className="cut"></div>
-                    <label htmlFor="profesionales" className="placeholder">Profesional</label>
-                </div>
-                <div className="input-container ic1">
-                    <select
-                        className="input"
-                        id="sede"
-                        name="sede"
-                        value={sedeSeleccionada}
-                        disabled={!medicoSeleccionado}
-                        onChange={event => selectSedes(parseInt(event.target.value))}>
-                        <option value="" disabled>Seleccione la Sede</option>
-                        {
-                            sedes.map(s => {
-                                return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
-                            })
-                        }
-                    </select>
-                    <div className="cut"></div>
-                    <label htmlFor="sede" className="placeholder">Sede</label>
-                </div>
-                <div className="input-container ic1">
-                    <select
-                        className="input"
-                        id="date"
-                        name="date"
-                        type="date"
-                        value={dateSelected}
-                        disabled={!sedeSeleccionada}
-                        onChange={event => selectDate(event.target.value)}>
-                        <option value="" disabled>Seleccione el día</option>
-                        {
-                            dates.map(d => {
-                                return <option value={d.fechaturno_turno}>{d.fechaturno_turno}</option>
-                            })
-                        }
-                    </select>
-                    <div className="cut"></div>
-                    <label htmlFor="sede" className="placeholder">Dia</label>
-                </div>
-                <div className="input-container ic1">
-                    <select
-                        className="input"
-                        id="time"
-                        name="time"
-                        type="time"
-                        value={timeSelected}
-                        disabled={!dateSelected}
-                        onChange={event => selectTime(event.target.value)}>
-                        <option value="" disabled>Seleccione la hora</option>
-                        {
-                            times.map(ti => {
-                                return <option value={ti.id}>{ti.horaturno_turno}</option>
-                            })
-                        }
-                    </select>
-                    <div className="cut"></div>
-                    <label htmlFor="sede" className="placeholder">Hora</label>
-                </div>
-                <input type="submit" className="submit" />
+                {
+                    especialidades.length > 0 && medicos.length > 0 && sedes.length > 0 && dates.length > 0 && times.length > 0
+                        ? <>
+                            <div className="input-container ic1">
+                                <select
+                                    className="input"
+                                    id="especialidad"
+                                    name="especialidad"
+                                    value={especialidadSeleccionada}
+                                    onChange={event => selectEspecialidades(parseInt(event.target.value))}>
+                                    <option selected disabled>Seleccione Especialidad</option>
+                                    {
+                                        especialidades.map(e => {
+                                            return <option value={e.id}>{e.descripcion_especialidad}</option>
+                                        })
+                                    }
+                                </select>
+                                <div className="cut"></div>
+                                <label htmlFor="especialidad" className="placeholder">Especialidad</label>
+                            </div>
+                            <div className="input-container ic1">
+                                <select
+                                    className="input"
+                                    id="profesionales"
+                                    name="profesionales"
+                                    value={medicoSeleccionado}
+                                    disabled={!especialidadSeleccionada}
+                                    onChange={event => selectProfesionales(parseInt(event.target.value))}>
+                                    <option selected disabled>Seleccione Profesional</option>
+                                    {
+                                        medicosFilter.map(m => {
+                                            return <option value={m.id}>{m.name} {m.last_name}</option>
+                                        })
+                                    }
+                                </select>
+                                <div className="cut"></div>
+                                <label htmlFor="profesionales" className="placeholder">Profesional</label>
+                            </div>
+                            <div className="input-container ic1">
+                                <select
+                                    className="input"
+                                    id="sede"
+                                    name="sede"
+                                    value={sedeSeleccionada}
+                                    disabled={!medicoSeleccionado}
+                                    onChange={event => selectSedes(parseInt(event.target.value))}>
+                                    <option selected disabled>Seleccione la Sede</option>
+                                    {
+                                        sedes.map(s => {
+                                            return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
+                                        })
+                                    }
+                                </select>
+                                <div className="cut"></div>
+                                <label htmlFor="sede" className="placeholder">Sede</label>
+                            </div>
+                            <div className="input-container ic1">
+                                <select
+                                    className="input"
+                                    id="date"
+                                    name="date"
+                                    type="date"
+                                    value={dateSelected}
+                                    disabled={!sedeSeleccionada}
+                                    onChange={event => selectDate(event.target.value)}>
+                                    <option selected disabled>Seleccione el día</option>
+                                    {
+                                        dates.map(d => {
+                                            return <option value={d.fechaturno_turno}>{d.fechaturno_turno}</option>
+                                        })
+                                    }
+                                </select>
+                                <div className="cut"></div>
+                                <label htmlFor="sede" className="placeholder">Dia</label>
+                            </div>
+                            <div className="input-container ic1">
+                                <select
+                                    className="input"
+                                    id="time"
+                                    name="time"
+                                    type="time"
+                                    value={timeSelected}
+                                    disabled={!dateSelected}
+                                    onChange={event => selectTime(event.target.value)}>
+                                    <option selected disabled>Seleccione la hora</option>
+                                    {
+                                        times.map(ti => {
+                                            return <option value={ti.id}>{ti.horaturno_turno}</option>
+                                        })
+                                    }
+                                </select>
+                                <div className="cut"></div>
+                                <label htmlFor="sede" className="placeholder">Hora</label>
+                            </div>
+                            <input type="submit" className="submit" />
+                        </>
+                        : <p>Cargando...</p>
+                }
             </form>
         </div>
     );
