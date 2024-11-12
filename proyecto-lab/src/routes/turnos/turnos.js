@@ -8,21 +8,19 @@ import './turnos.css';
 const Turnos = () => {
 
     const [medicos, setMedicos] = useState([])
-    const [medicosFilter, setmedicosFilter] = useState([])
-    const [profesional, setProfesional] = useState()
+    const [medicosFilter, setMedicosFilter] = useState([])
+    const [medicoSeleccionado, setMedicoSeleccionado] = useState(null)
     const [especialidades, setEspecialidades] = useState([])
-    const [especialidad, setEspecialidad] = useState()
-    const [sede, setSede] = useState([])
-    const [sedeSeleccionada, setSedeSeleccionada] = useState()
-    const [dateFilter, setDateFilter] = useState([])
-    const [dateSelected, setDateSelected] = useState()
-    const [timeFilter, setTimeFilter] = useState([])
-    const [timeSelected, setTimeSelected] = useState()
+    const [especialidadSeleccionada, setEspecialidadSeleccionada] = useState(null)
+    const [sedes, setSedes] = useState([])
+    const [sedeSeleccionada, setSedeSeleccionada] = useState(null)
+    const [dates, setDates] = useState([])
+    const [dateSelected, setDateSelected] = useState(null)
+    const [times, setTimes] = useState([])
+    const [timeSelected, setTimeSelected] = useState(null)
     const [user, setUser] = useState({})
     const [turnos, setTurnos] = useState([])
     const navigate = useNavigate();
-
-    console.log(timeSelected)
 
     const turnoconfirmado = () => {
         swal({
@@ -48,9 +46,9 @@ const Turnos = () => {
             .then((res) => setEspecialidades(res.data))
     }
 
-    const fetchsede = () => {
+    const fetchsedes = () => {
         httpGet2('api/sede')
-            .then((res) => setSede(res.data))
+            .then((res) => setSedes(res.data))
     }
 
     const fetchturnos = () => {
@@ -60,37 +58,40 @@ const Turnos = () => {
 
     useEffect(fetchmedicos, [])
     useEffect(fetchespecialidades, [])
-    useEffect(fetchsede, [])
+    useEffect(fetchsedes, [])
     useEffect(fetchturnos, [])
     useEffect(() => {
         httpGet('api/me/').then((res) =>
             setUser(res.data))
     }, [])
 
-    const selectEspecialidad = (value) => {
-        setEspecialidad(value)
+    const selectEspecialidades = (value) => {
+        setEspecialidadSeleccionada(value)
         const medicosFiltrados = medicos.filter((m) => {
             if(value === m.especialidades.id){
                 return true;
             }
             return false;
         })
-        setmedicosFilter(medicosFiltrados);
+        setMedicosFilter(medicosFiltrados);
     }
 
-    const selectDate = (value) => {
+    const selectProfesionales = (value) => {
+        setMedicoSeleccionado(value)
+    }
+
+    const selectSedes = (value) => {
         setSedeSeleccionada(value)
-        const fechaFiltrada = turnos.filter((t) => {
-            if(value === t.sedeturnos.id && profesional === t.medicosturnos.id){
+        const fechasFiltradas = turnos.filter((t) => {
+            if(value === t.sedeturnos.id && medicoSeleccionado === t.medicosturnos.id){
                 return true;
             }
             return false;
         })
-        setDateFilter(fechaFiltrada);
+        setDates(fechasFiltradas);
     }
 
-
-    const selecTime = (value) => {
+    const selectDate = (value) => {
         setDateSelected(value)
         const tiempoFiltrado = turnos.filter((t) => {
             if(value === t.fechaturno_turno){
@@ -98,33 +99,31 @@ const Turnos = () => {
             }
             return false;
         })
-        setTimeFilter(tiempoFiltrado);
+        setTimes(tiempoFiltrado);
     }
 
-
-    /*const turn = (e) => {
-        e.preventDefault()
-        httpPut(`api/turnos/${timeSelected}/`, {fechaturno_turno: dateSelected, horaturno_turno: timeSelected,
-            usuario_turno: user.id, medico_turno: profesional, sede_turno: sedeSeleccionada,
-            turnodisponible: false
-        }).then((res) => {
-            navigate('/')
-            turnoconfirmado();
-        }).catch(() => {
-            turnorechazado();
-        })
-    }  */
+    const selectTime = (value) => {
+        setTimeSelected(value)
+    }
 
     const turn = (e) => {
+        console.log('especialidad', especialidadSeleccionada)
+        console.log('profesional', medicoSeleccionado)
+        console.log('sede', sedeSeleccionada)
+        console.log('fecha', dateSelected)
+        console.log('hora', timeSelected)
+        console.log('user', user)
+
         e.preventDefault()
-        httpPatch(`api/turnos/${timeSelected}/` , {usuario_turno: user.id,
-            turnodisponible: false
-        }).then((res) => {
-            navigate('/')
-            turnoconfirmado();
-        }).catch(() => {
-            turnorechazado();
-        })
+        
+        // httpPatch(`api/turnos/${timeSelected}/` , {usuario_turno: user.id,
+        //     turnodisponible: false
+        // }).then((res) => {
+        //     navigate('/');
+        //     turnoconfirmado();
+        // }).catch(() => {
+        //     turnorechazado();
+        // })
     }
 
     return (
@@ -138,9 +137,9 @@ const Turnos = () => {
                         className="input"
                         id="especialidad"
                         name="especialidad"
-                        value={especialidad}
-                        onChange={event => selectEspecialidad(parseInt(event.target.value))}>
-                        <option selected disabled>Seleccione Especialidad</option>
+                        value={especialidadSeleccionada}
+                        onChange={event => selectEspecialidades(parseInt(event.target.value))}>
+                        <option value="" disabled>Seleccione Especialidad</option>
                         {
                             especialidades.map(e => {
                                 return <option value={e.id}>{e.descripcion_especialidad}</option>
@@ -148,17 +147,17 @@ const Turnos = () => {
                         }
                     </select>
                     <div className="cut"></div>
-                    <label for="especialidad" className="placeholder">Especialidad</label>
+                    <label htmlFor="especialidad" className="placeholder">Especialidad</label>
                 </div>
                 <div className="input-container ic1">
                     <select
                         className="input"
                         id="profesionales"
                         name="profesionales"
-                        value={profesional}
-                        disabled={!especialidad}
-                        onChange={event => setProfesional(parseInt(event.target.value))}>
-                        <option selected disabled>Seleccione Profesional</option>
+                        value={medicoSeleccionado}
+                        disabled={!especialidadSeleccionada}
+                        onChange={event => selectProfesionales(parseInt(event.target.value))}>
+                        <option value="" disabled>Seleccione Profesional</option>
                         {
                             medicosFilter.map(m => {
                                 return <option value={m.id}>{m.name} {m.last_name}</option>
@@ -166,7 +165,7 @@ const Turnos = () => {
                         }
                     </select>
                     <div className="cut"></div>
-                    <label for="profesionales" className="placeholder">Profesional</label>
+                    <label htmlFor="profesionales" className="placeholder">Profesional</label>
                 </div>
                 <div className="input-container ic1">
                     <select
@@ -174,17 +173,17 @@ const Turnos = () => {
                         id="sede"
                         name="sede"
                         value={sedeSeleccionada}
-                        disabled={!profesional}
-                        onChange={event => /*setSedeSeleccionada*/selectDate(parseInt(event.target.value))}>
-                        <option selected disabled>Seleccione la Sede</option>
+                        disabled={!medicoSeleccionado}
+                        onChange={event => selectSedes(parseInt(event.target.value))}>
+                        <option value="" disabled>Seleccione la Sede</option>
                         {
-                            sede.map(s => {
+                            sedes.map(s => {
                                 return <option value={s.id}>{s.nombre_sede} - {s.direccion}</option>
                             })
                         }
                     </select>
                     <div className="cut"></div>
-                    <label for="sede" className="placeholder">Sede</label>
+                    <label htmlFor="sede" className="placeholder">Sede</label>
                 </div>
                 <div className="input-container ic1">
                     <select
@@ -194,10 +193,10 @@ const Turnos = () => {
                         type="date"
                         value={dateSelected}
                         disabled={!sedeSeleccionada}
-                        onChange={event => selecTime(event.target.value)}>
-                        <option selected disabled>Seleccione el día</option>
+                        onChange={event => selectDate(event.target.value)}>
+                        <option value="" disabled>Seleccione el día</option>
                         {
-                            dateFilter.map(d => {
+                            dates.map(d => {
                                 return <option value={d.fechaturno_turno}>{d.fechaturno_turno}</option>
                             })
                         }
@@ -208,33 +207,21 @@ const Turnos = () => {
                 <div className="input-container ic1">
                     <select
                         className="input"
-                        id="date"
-                        name="date"
-                        type="date"
+                        id="time"
+                        name="time"
+                        type="time"
                         value={timeSelected}
                         disabled={!dateSelected}
-                        onChange={event => setTimeSelected(event.target.value)}>
-                        <option selected disabled>Seleccione la hora</option>
+                        onChange={event => selectTime(event.target.value)}>
+                        <option value="" disabled>Seleccione la hora</option>
                         {
-                            timeFilter.map(ti => {
+                            times.map(ti => {
                                 return <option value={ti.id}>{ti.horaturno_turno}</option>
                             })
                         }
                     </select>
                     <div className="cut"></div>
                     <label htmlFor="sede" className="placeholder">Hora</label>
-                </div>
-                <div className="input-container ic2">
-                    <select
-                        className="input"
-                        id="user"
-                        type="user"
-                        disabled={!timeSelected}
-                        value={user.id}
-                        onChange={event => setUser(parseInt(event.target.value))}>
-                        <option selected defaultValue={user.id}>{user.first_name} {user.last_name}</option>
-                    </select>
-                    <label for="user" className="placeholder">User</label>
                 </div>
                 <input type="submit" className="submit" />
             </form>
