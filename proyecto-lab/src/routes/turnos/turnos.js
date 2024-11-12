@@ -67,6 +67,10 @@ const Turnos = () => {
 
     const selectEspecialidades = (value) => {
         setEspecialidadSeleccionada(value)
+        setMedicoSeleccionado(null)
+        setSedeSeleccionada(null)
+        setDateSelected(null)
+        setTimeSelected(null)
         const medicosFiltrados = medicos.filter((m) => {
             if(value === m.especialidades.id){
                 return true;
@@ -78,10 +82,15 @@ const Turnos = () => {
 
     const selectProfesionales = (value) => {
         setMedicoSeleccionado(value)
+        setSedeSeleccionada(null)
+        setDateSelected(null)
+        setTimeSelected(null)
     }
 
     const selectSedes = (value) => {
         setSedeSeleccionada(value)
+        setDateSelected(null)
+        setTimeSelected(null)
         const fechasFiltradas = turnos.filter((t) => {
             if(value === t.sedeturnos.id && medicoSeleccionado === t.medicosturnos.id){
                 return true;
@@ -93,6 +102,7 @@ const Turnos = () => {
 
     const selectDate = (value) => {
         setDateSelected(value)
+        setTimeSelected(null)
         const tiempoFiltrado = turnos.filter((t) => {
             if(value === t.fechaturno_turno){
                 return true;
