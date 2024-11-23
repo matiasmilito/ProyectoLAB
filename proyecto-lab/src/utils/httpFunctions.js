@@ -19,11 +19,14 @@ export const httpGet2 = async (endpoint) => {
 
 
 export const httpPost = async (endpoint, data) => {
-    return axios.post(baseUrl + endpoint, data, {
-        headers: {
-            authorization: localStorage.getItem('token')
-        }
-    })
+    const token = localStorage.getItem('token');
+    let options = {};
+
+    if (token) {
+        options.headers = { authorization: token }
+    }
+
+    return axios.post(baseUrl + endpoint, data, options)
 }
 
 export const httpPost2 = async (endpoint, data) => {

@@ -246,7 +246,7 @@ const Turnos = () => {
                                 disabled={especialidadSeleccionada === '' || medicoSeleccionado === '' || sedeSeleccionada === '' || dateSelected === '' || timeSelected === ''}
                             />
                         </>
-                        : <p>Cargando...</p>
+                        : <p className="cargando">Cargando...</p>
                 }
             </form>
         </div>
