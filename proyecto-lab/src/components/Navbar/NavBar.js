@@ -12,7 +12,8 @@ class NavBar extends Component {
   }
 
   render() {
-    const isLoggedIn = localStorage.getItem('token')
+    const isLoggedIn = localStorage.getItem('token');
+    console.log("isLoggedIn", isLoggedIn);
     return (
       <nav className="NavbarItems">
         <h1 className="navbar-logo"><Link to={'/'} className="title-link">SGR</Link><i className="fa-solid fa-hospital icono"></i></h1>
