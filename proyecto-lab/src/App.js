@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import NavBar from "./components/Navbar/NavBar";
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Staff from "./routes/staff/staff";
 import Home from "./routes/home/home";
@@ -9,23 +9,26 @@ import Login from "./routes/login/login";
 import Footer from "./components/footer/footer";
 import Register from "./routes/register/Register";
 import Profile from "./routes/profile/profile";
+import AuthRoute from "./components/AuthRoute";
 
 function App() {
-  useEffect(() => {
-    console.log('App component mounted');
-    console.log('Current path:', window.location.pathname);
-  }, []);
-
   return (
     <div>
       <NavBar/>
         <Routes>
-          <Route exact path="/" element={<Home/>} />
-          <Route exact path="/staff" element={<Staff/>} />
-          <Route exact path="/turnos" element={<Turnos/>} />
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/Register" element={<Register/>} />
-          <Route exact path="/profile" element={<Profile/>} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/staff" element={<Staff/>} />
+          <Route path="/turnos" element={<Turnos/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/Register" element={<Register/>} />
+          <Route 
+            path="/profile" 
+            element={
+              <AuthRoute>
+                <Profile />
+              </AuthRoute>
+            } 
+          />
           <Route path="*" element={<div>404 - Not Found</div>} />
         </Routes>
       <Footer/>
