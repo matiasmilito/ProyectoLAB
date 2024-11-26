@@ -12,7 +12,7 @@ class NavBar extends Component {
 
   componentDidMount() {
     window.addEventListener('storage', this.handleStorageChange);
-    this.checkAuthStatus();
+    this.handleStorageChange();
   }
 
   componentWillUnmount() {
