@@ -126,14 +126,15 @@ const Turnos = () => {
 
         e.preventDefault()
         
-        // httpPatch(`api/turnos/${timeSelected}/` , {usuario_turno: user.id,
-        //     turnodisponible: false
-        // }).then((res) => {
-        //     navigate('/');
-        //     turnoconfirmado();
-        // }).catch(() => {
-        //     turnorechazado();
-        // })
+        httpPatch(`api/turnos/${timeSelected}/` , {
+            usuario_turno: user.id,
+            turnodisponible: false
+        }).then((res) => {
+            navigate('/profile');
+            turnoconfirmado();
+        }).catch(() => {
+            turnorechazado();
+        })
     }
 
     return (
