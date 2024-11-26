@@ -42,12 +42,12 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise ValidationError("El mail ya existe")
         #si el mail ingresado por el usuario ya existe, se devuelve el mensaje "el mail ya existe"
 
-        if user is not {}:
-            subject = 'Bienvenido a SGR'
-            message = 'Hola ' + first_name + '' + last_name + ' Se ha registrado con exito'
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [validated_data['email']]
-            send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+        # if user is not {}:
+        #     subject = 'Bienvenido a SGR'
+        #     message = 'Hola ' + first_name + '' + last_name + ' Se ha registrado con exito'
+        #     email_from = settings.EMAIL_HOST_USER
+        #     recipient_list = [validated_data['email']]
+        #     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
         user.save()
         #si el usuario no está vacio, se envia el mail con los datos del mismo.
@@ -105,12 +105,12 @@ class TurnosSerializer(serializers.ModelSerializer):
         lugar = instance.sede_turno
         medico = instance.medico_turno
         mail = instance.usuario_turno.email
-        if instance.turnodisponible is False:
-            subject = 'Turno confirmado SGR'
-            message = 'Hola , su turno ha sido confirmado para el día ' + str(dia) + ' a las ' + str(hora) + ' con el doctor ' + str(medico) + ' en ' + str(lugar)
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [mail]
-            send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+        # if instance.turnodisponible is False:
+        #     subject = 'Turno confirmado SGR'
+        #     message = 'Hola , su turno ha sido confirmado para el día ' + str(dia) + ' a las ' + str(hora) + ' con el doctor ' + str(medico) + ' en ' + str(lugar)
+        #     email_from = settings.EMAIL_HOST_USER
+        #     recipient_list = [mail]
+        #     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
         instance.save()
         #si el turno pasa a estar no disponible(is false), se envia el mail con los datos del turno
         return instance

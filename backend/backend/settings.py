@@ -185,7 +185,7 @@ CORS_URLS_REGEX = r'^/api/.*$'
 
 AUTH_USER_MODEL = 'api.User'
 
-EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_HOST_USER = 'sanatoriogranrosario@hotmail.com'
 EMAIL_HOST_PASSWORD = 'sgr.2022'
 EMAIL_PORT = 587
