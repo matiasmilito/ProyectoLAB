@@ -13,6 +13,7 @@ from datetime import timedelta
 from os import getenv
 from pathlib import Path
 from dotenv import load_dotenv
+import os
 
 load_dotenv(".env")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -130,7 +131,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Agrega esto para servir los archivos estáticos en producción
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -150,13 +157,16 @@ SIMPLE_JWT = {
 } 
 
 SWAGGER_SETTINGS = {
+   'USE_SESSION_AUTH': False,
    'SECURITY_DEFINITIONS': {
         'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
             'in': 'header'
         }
-    }
+    },
+    'JSON_EDITOR': True,
+    'SUPPORTED_SUBMIT_METHODS': ['get', 'post', 'put', 'delete', 'patch'],
 }
 
 # aca lo normal seria poner la lista de url's de front end apps que queremos dejar que le hagan requests a este backend
@@ -169,6 +179,7 @@ CORS_ALLOWED_ORIGINS = [
 # dejar esta setting en True permite que cualquier front end app pueda hacer requests a este backend gnorando
 # la setting de arriba, lo seguro seria dejar esta setting en False y completar la lista de url's en esa setting
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_URLS_REGEX = r'^/api/.*$'
 
 AUTH_USER_MODEL = 'api.User'
 
