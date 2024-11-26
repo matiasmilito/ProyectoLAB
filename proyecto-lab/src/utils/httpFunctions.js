@@ -1,8 +1,7 @@
 const axios = require('axios');
 
 // https://proyectolab.onrender.com
-// const baseUrl = 'http://127.0.0.1:8000/';
-const baseUrl = 'https://proyectolab.onrender.com/';
+const baseUrl = process.env.REACT_APP_API_URL || 'https://proyectolab.onrender.com';
 
 export const httpGet = async (endpoint) => {
     return axios.get(baseUrl + endpoint, {

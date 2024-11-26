@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -174,6 +175,7 @@ SWAGGER_SETTINGS = {
 #
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    "https://proyectolab-front.onrender.com"
 ]
 
 # dejar esta setting en True permite que cualquier front end app pueda hacer requests a este backend gnorando
