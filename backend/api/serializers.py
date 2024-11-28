@@ -34,8 +34,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             nro_afiliado=validated_data['nro_afiliado'],
             obra_social=validated_data['obra_social'],
             # num_matricula=validated_data['num_matricula'],
-            username=validated_data['username'],
-            password=validated_data['password']
+            username=validated_data['username']
         )
 
         if User.objects.filter(email=email).exists():
@@ -49,6 +48,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         #     recipient_list = [validated_data['email']]
         #     send_mail(subject, message, email_from, recipient_list, fail_silently=False)
 
+        user.set_password(validated_data['password'])
         user.save()
         #si el usuario no está vacio, se envia el mail con los datos del mismo.
         return user
